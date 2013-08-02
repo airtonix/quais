@@ -1,5 +1,58 @@
 {% extends "_base.html" %}
 
 {% block content %}
-    <h1>Quais</h1>
+    {{containers}}
+    <table class="table table-middle">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Git</th>
+                <th>Docker ID</th>
+                <th>Something here</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for container in containers %}
+            <tr>
+                <td><img src="http://fweddit.com/favicon.ico" alt="" width="20"></td>
+                <td><a href="#">Fwmazon</a></td>
+                <td><a href="http://gitlab.j4lp.com">feature/beta:1b3afddb83d3</a></td>
+                <td>{{container.Id|cut(12)}}</td>
+                <td>Yada yada</td>
+                <td>Up 25 hours</td>
+                <td><a href="#" class="btn btn-small btn-default">Foo</a></td>
+            </tr>
+            {% endfor %}
+            <tr>
+                <td><img src="http://fweddit.com/favicon.ico" alt="" width="20"></td>
+                <td><a href="#">Fwmazon</a></td>
+                <td><a href="http://gitlab.j4lp.com">feature/beta:1b3afddb83d3</a></td>
+                <td>1b3afddb83d3</td>
+                <td>Yada yada</td>
+                <td>Up 25 hours</td>
+                <td><a href="#" class="btn btn-small btn-default">Foo</a></td>
+            </tr>
+            <tr>
+                <td><img src="http://fweddit.com/favicon.ico" alt="" width="20"></td>
+                <td><a href="#">Fwmazon</a></td>
+                <td><a href="http://gitlab.j4lp.com">feature/beta:1b3afddb83d3</a></td>
+                <td>1b3afddb83d3</td>
+                <td>Yada yada</td>
+                <td>Up 25 hours</td>
+                <td><a href="#" class="btn btn-small btn-default">Foo</a></td>
+            </tr>
+            <tr>
+                <td><img src="http://fweddit.com/favicon.ico" alt="" width="20"></td>
+                <td><a href="#">Fwmazon</a></td>
+                <td><a href="http://gitlab.j4lp.com">feature/beta:1b3afddb83d3</a></td>
+                <td>1b3afddb83d3</td>
+                <td>Yada yada</td>
+                <td>Up 25 hours</td>
+                <td><a href="#" class="btn btn-small btn-default">Foo</a></td>
+            </tr>
+        </tbody>
+    </table>
 {% endblock %}
