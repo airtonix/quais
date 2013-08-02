@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <title>Fwmazon - Fweddit.com</title>
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="/static/bootstrap/css/bootstrap.css">
+        <link rel="stylesheet" href="/static/css/font-awesome.min.css">
+        <link rel="stylesheet" href="/static/css/style.css">
+        {% block css %}{% endblock %}
+        <script src="/static/js/jquery.min.js"></script>
+        <script src="/static/bootstrap/js/bootstrap.min.js"></script>
+        <script src="/static/js/jquery.cookie.js"></script>
+        <script src="/static/js/cart.js"></script>
+        {% block js %}{% endblock %}
+    </head>
+    <body>
+        <header>
+            <div class="navbar">
+                <div class="container">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="/">Quais</a>
+                    <div class="nav-collapse collapse navbar-responsive-collapse">
+                        <ul class="nav navbar-nav">
+                            <li class="active"><a href="#">Home</a></li>
+                            <li><a href="#">Link</a></li>
+                            <li><a href="#">Link</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <div class="container">
+            <div id="messages">
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="alert alert-{{message.tags}}">{{message}}</div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+            {% block content %}{% endblock %}
+        </div>
+        <footer>
+            <div class="container">
+                <div class="row">
+                    <div class="col col-lg-12">
+                    </div>
+                </div>
+            </div>           
+        </footer>
+    </body>
+</html>
