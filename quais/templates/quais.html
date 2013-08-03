@@ -1,6 +1,7 @@
 {% extends "_base.html" %}
 
 {% block content %}
+    {{applications}}
     {{containers}}
     <table class="table table-middle">
         <thead>
@@ -15,44 +16,17 @@
             </tr>
         </thead>
         <tbody>
-            {% for container in containers %}
+            {% for app in applications %}
             <tr>
                 <td><img src="http://fweddit.com/favicon.ico" alt="" width="20"></td>
-                <td><a href="#">Fwmazon</a></td>
+                <td><a href="{{app.vhost}}">{{app.name}}</a></td>
                 <td><a href="http://gitlab.j4lp.com">feature/beta:1b3afddb83d3</a></td>
-                <td>{{container.Id|cut(12)}}</td>
+                <td>{{app.container}}</td>
                 <td>Yada yada</td>
-                <td>Up 25 hours</td>
+                <td>{{containers[app.container]}}</td>
                 <td><a href="#" class="btn btn-small btn-default">Foo</a></td>
             </tr>
             {% endfor %}
-            <tr>
-                <td><img src="http://fweddit.com/favicon.ico" alt="" width="20"></td>
-                <td><a href="#">Fwmazon</a></td>
-                <td><a href="http://gitlab.j4lp.com">feature/beta:1b3afddb83d3</a></td>
-                <td>1b3afddb83d3</td>
-                <td>Yada yada</td>
-                <td>Up 25 hours</td>
-                <td><a href="#" class="btn btn-small btn-default">Foo</a></td>
-            </tr>
-            <tr>
-                <td><img src="http://fweddit.com/favicon.ico" alt="" width="20"></td>
-                <td><a href="#">Fwmazon</a></td>
-                <td><a href="http://gitlab.j4lp.com">feature/beta:1b3afddb83d3</a></td>
-                <td>1b3afddb83d3</td>
-                <td>Yada yada</td>
-                <td>Up 25 hours</td>
-                <td><a href="#" class="btn btn-small btn-default">Foo</a></td>
-            </tr>
-            <tr>
-                <td><img src="http://fweddit.com/favicon.ico" alt="" width="20"></td>
-                <td><a href="#">Fwmazon</a></td>
-                <td><a href="http://gitlab.j4lp.com">feature/beta:1b3afddb83d3</a></td>
-                <td>1b3afddb83d3</td>
-                <td>Yada yada</td>
-                <td>Up 25 hours</td>
-                <td><a href="#" class="btn btn-small btn-default">Foo</a></td>
-            </tr>
         </tbody>
     </table>
 {% endblock %}

@@ -1,7 +1,9 @@
 Flask==0.10.1
+Flask-SQLAlchemy==1.0
 Flask-Script==0.5.3
 Jinja2==2.7
 MarkupSafe==0.18
+SQLAlchemy==0.8.2
 Werkzeug==0.9.3
 argparse==1.2.1
 docker-py==0.1.2
