@@ -67,7 +67,7 @@ def start_application(app_id):
 
 
 @app.route('/api/stop/<int:app_id>', methods=['POST'])
-def start_application(app_id):
+def stop_application(app_id):
     application = Application.query.get(app_id)
     try:
         application = d.create_container(application.image, '/bin/bash -c "/start web"', detach=True, ports=[
@@ -78,7 +78,7 @@ def start_application(app_id):
 
 
 @app.route('/api/restart/<int:app_id>', methods=['POST'])
-def start_application(app_id):
+def restart_application(app_id):
     application = Application.query.get(app_id)
     try:
         application = d.create_container(application.image, '/bin/bash -c "/start web"', detach=True, ports=[
