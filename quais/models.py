@@ -1,6 +1,4 @@
-from flask.ext.sqlalchemy import SQLAlchemy
-
-db = SQLAlchemy()
+from .extensions import d, db
 
 class Application(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -19,8 +17,38 @@ class Application(db.Model):
     def __repr__(self):
         return '<Application %r>' % self.name
 
+    @property
+    def serialize(self):
+        """Return object data in easily serializeable format"""
+        return {
+            'id': self.id,
+            'name': self.name,
+            'container': self.container,
+            'env': self.env,
+            'commit': self.commit,
+            'vhost': self.vhost,
+            'image': self.image,
+            'port': self.port
+        }
+
     def update(self, data):
         for (key, value) in data.items():
             setattr(self, key, value)
         db.session.add(self)
         db.session.commit()
+
+    def start(self):
+        try:
+            application = d.create_container(application.image, '/bin/bash -c "/start web"', detach=True, ports=[
+                                         str(application.port)], environment=['PORT=' + str(application.port)])
+        except Exception, e:
+            raise e
+        print(application)
+        return application
+
+    def stop(self):
+        try:
+            application = d.stop(self.container)
+        except Exception, e:
+            raise e
+        return application

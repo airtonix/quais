@@ -21,12 +21,29 @@ Then define our single application item view
     ApplicationView = Backbone.View.extend
         tagName: 'tr'
         template: Handlebars.templates['application.hbs']
+        events:
+            'click .js-app-restart': 'restart'
+            'click .js-app-stop': 'stop'
+            'click .js-app-start': 'start'
         initialize: ->
             @listenTo(@model, 'change', @render)
         render: ->
             window.model = @model
             @$el.html(@template(@model.toJSON()))
             return @
+        stop: ->
+            req = $.post('/api/stop/' + @model.get('id'))
+                .done ->
+                    console.log('foo')
+                .fail (data) ->
+                    $('#messages').notify
+                        type: 'danger'
+                        message:
+                            text: data.responseJSON['error']
+                    .show()
+                    console.log(data.responseJSON)
+                .always ->
+                    console.log('always')
 
 And to finish it all, the main application view that binds to the content area
 

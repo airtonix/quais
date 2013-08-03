@@ -6,15 +6,15 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   var buffer = "", stack1, stack2, options, functionType="function", escapeExpression=this.escapeExpression, helperMissing=helpers.helperMissing;
 
 
-  buffer += "<td><img src=\"";
+  buffer += "<td><img src=\"http://fweddit.com/favicon.ico\" width=\"20\" alt=\"\"></td>\n<td><a href=\"http://";
   if (stack1 = helpers.vhost) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
   else { stack1 = depth0.vhost; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
   buffer += escapeExpression(stack1)
-    + "/favicon.ico\" alt=\"\"></td>\n<td>";
+    + "\">";
   if (stack1 = helpers.name) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
   else { stack1 = depth0.name; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
   buffer += escapeExpression(stack1)
-    + "</td>\n<td><a href=\"http://gitlab.j4lp.com/";
+    + "</a></td>\n<td><a href=\"http://gitlab.j4lp.com/";
   if (stack1 = helpers.name) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
   else { stack1 = depth0.name; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
   buffer += escapeExpression(stack1)
@@ -37,7 +37,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   if (stack2 = helpers.status) { stack2 = stack2.call(depth0, {hash:{},data:data}); }
   else { stack2 = depth0.status; stack2 = typeof stack2 === functionType ? stack2.apply(depth0) : stack2; }
   buffer += escapeExpression(stack2)
-    + "</td>\n<td>\n    <div class=\"btn-group pull-right clearfix\">\n        <a href=\"#\" class=\"btn btn-small btn-warning\">Restart</a>\n        <a href=\"#\" class=\"btn btn-small btn-danger\">Stop</a>\n        <a href=\"#\" class=\"btn btn-small btn-default\">Rebuild</a>\n    </div>\n</td>";
+    + "</td>\n<td>\n    <div class=\"btn-group pull-right clearfix\">\n        <a href=\"#\" class=\"btn btn-small btn btn-belize-hole js-app-restart\">Restart</a>\n        <a href=\"#\" class=\"btn btn-small btn-alizarin js-app-stop\">Stop</a>\n    </div>\n</td>";
   return buffer;
   });
 })();

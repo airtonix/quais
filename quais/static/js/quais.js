@@ -20,6 +20,11 @@
   ApplicationView = Backbone.View.extend({
     tagName: 'tr',
     template: Handlebars.templates['application.hbs'],
+    events: {
+      'click .js-app-restart': 'restart',
+      'click .js-app-stop': 'stop',
+      'click .js-app-start': 'start'
+    },
     initialize: function() {
       return this.listenTo(this.model, 'change', this.render);
     },
@@ -27,6 +32,22 @@
       window.model = this.model;
       this.$el.html(this.template(this.model.toJSON()));
       return this;
+    },
+    stop: function() {
+      var req;
+      return req = $.post('/api/stop/' + this.model.get('id')).done(function() {
+        return console.log('foo');
+      }).fail(function(data) {
+        $('#messages').notify({
+          type: 'danger',
+          message: {
+            text: data.responseJSON['error']
+          }
+        }).show();
+        return console.log(data.responseJSON);
+      }).always(function() {
+        return console.log('always');
+      });
     }
   });
 
