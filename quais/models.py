@@ -9,6 +9,8 @@ class Application(db.Model):
     env = db.Column(db.Text())
     commit = db.Column(db.String(40))
     vhost = db.Column(db.String(128))
+    image = db.Column(db.String(128))
+    port = db.Column(db.Integer)
 
     def __init__(self, **kwargs):
         for (key, value) in kwargs.items():
