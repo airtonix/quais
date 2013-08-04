@@ -561,3 +561,6 @@ fieldset[disabled] .btn-asbestos.active {
 .table-application-actions {
   width: 20%;
 }
+.table .btn-group-justified a {
+  border: 0;
+}

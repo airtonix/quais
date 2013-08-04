@@ -5,6 +5,8 @@ This is the literate coffeescript code for Quais application
 Let's start by creating our models and collections
 
     Application = Backbone.Model.extend
+        default:
+            status: 'started'
         start: ->
             console.log('foo')
 
@@ -31,15 +33,16 @@ Then define our single application item view
             window.model = @model
             @$el.html(@template(@model.toJSON()))
             return @
-        stop: ->
+        stop: =>
             req = $.post('/api/stop/' + @model.get('id'))
-                .done ->
+                .done =>
+                    @model.set('status', 'stopped')
                     $('#messages').notify
                         type: 'success'
                         message:
                             text: 'The process has been stopped'
                     .show()
-                .fail (data) ->
+                .fail (data) =>
                     $('#messages').notify
                         type: 'danger'
                         message:
@@ -50,13 +53,14 @@ Then define our single application item view
                     console.log('always')
         start: ->
             req = $.post('/api/start/' + @model.get('id'))
-                .done ->
+                .done =>
+                    @model.set('status', 'started')
                     $('#messages').notify
                         type: 'success'
                         message:
                             text: 'The process has been started'
                     .show()
-                .fail (data) ->
+                .fail (data) =>
                     $('#messages').notify
                         type: 'danger'
                         message:
@@ -66,13 +70,14 @@ Then define our single application item view
                 .always ->
         restart: ->
             req = $.post('/api/restart/' + @model.get('id'))
-                .done ->
+                .done =>
+                    @model.set('status', 'started')
                     $('#messages').notify
                         type: 'success'
                         message:
                             text: 'The process has been restarted'
                     .show()
-                .fail (data) ->
+                .fail (data) =>
                     $('#messages').notify
                         type: 'danger'
                         message:

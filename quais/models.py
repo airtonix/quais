@@ -28,7 +28,8 @@ class Application(db.Model):
             'commit': self.commit,
             'vhost': self.vhost,
             'image': self.image,
-            'port': self.port
+            'port': self.port,
+            'status': 'started'
         }
 
     def update(self, data):
