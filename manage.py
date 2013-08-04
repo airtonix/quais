@@ -1,5 +1,6 @@
 from flask.ext.script import Flask, Server, Manager
 from quais.app import app
+from quais.extensions import db
 
 manager = Manager(app)
 
