@@ -34,7 +34,44 @@ Then define our single application item view
         stop: ->
             req = $.post('/api/stop/' + @model.get('id'))
                 .done ->
-                    console.log('foo')
+                    $('#messages').notify
+                        type: 'success'
+                        message:
+                            text: 'The process has been stopped'
+                    .show()
+                .fail (data) ->
+                    $('#messages').notify
+                        type: 'danger'
+                        message:
+                            text: data.responseJSON['error']
+                    .show()
+                    console.log(data.responseJSON)
+                .always ->
+                    console.log('always')
+        start: ->
+            req = $.post('/api/start/' + @model.get('id'))
+                .done ->
+                    $('#messages').notify
+                        type: 'success'
+                        message:
+                            text: 'The process has been started'
+                    .show()
+                .fail (data) ->
+                    $('#messages').notify
+                        type: 'danger'
+                        message:
+                            text: data.responseJSON['error']
+                    .show()
+                    console.log(data.responseJSON)
+                .always ->
+        restart: ->
+            req = $.post('/api/restart/' + @model.get('id'))
+                .done ->
+                    $('#messages').notify
+                        type: 'success'
+                        message:
+                            text: 'The process has been restarted'
+                    .show()
                 .fail (data) ->
                     $('#messages').notify
                         type: 'danger'

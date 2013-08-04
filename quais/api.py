@@ -30,8 +30,7 @@ def start_application(app_id):
     if application is None:
         return jsonify, 404
     try:
-        application = d.create_container(application.image, '/bin/bash -c "/start web"', detach=True, ports=[
-                                         str(application.port)], environment=['PORT=' + str(application.port)])
+        application = d.start(application.container)
     except Exception, e:
         return jsonify(error=e), 500
     return jsonify(), 200
