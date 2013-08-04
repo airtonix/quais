@@ -1,4 +1,5 @@
 from flask import Flask, render_template
+from werkzeug.contrib.fixers import ProxyFix
 from .extensions import db
 from .api import api
 
@@ -16,7 +17,7 @@ def configure_db(app):
 
 
 app = create_app()
-
+app.wsgi_app = ProxyFix(app.wsgi_app)
 
 @app.route('/')
 def quais():
@@ -29,3 +30,4 @@ def cut_filter(s, at):
         return s[:at]
     except:
         return s
+        

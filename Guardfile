@@ -9,3 +9,5 @@ guard 'livereload' do
   watch(%r{quais/static/css/.+\.(css)})
   watch(%r{quais/templates/.+\.(html)})
 end
+
+guard 'coffeescript', :input => 'quais/static/js/', :output => 'quais/static/js/'
