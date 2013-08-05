@@ -104,7 +104,7 @@
       return this;
     },
     stop: function() {
-      return _this.model.stop;
+      return _this.model.stop();
     },
     start: function() {
       return this.model.start();

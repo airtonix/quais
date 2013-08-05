@@ -86,7 +86,7 @@ Then define our single application item view
             @$el.html(@template(@model.toJSON()))
             return @
         stop: =>
-            @model.stop
+            @model.stop()
         start: ->
             @model.start()
         restart: ->
