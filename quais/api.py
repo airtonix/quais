@@ -1,9 +1,9 @@
-from flask import abort, Blueprint, json, jsonify, request, Response
+import datetime
+import json
+from flask import abort, Blueprint, jsonify, request, Response
 from jinja2.filters import do_filesizeformat
 from .extensions import d
 from .models import Application
-import datetime
-import json
 
 api = Blueprint('api', __name__, url_prefix='/api')
 

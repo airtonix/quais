@@ -1,5 +1,6 @@
 from .extensions import d, db
 
+
 class Application(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(64), unique=True)
@@ -40,8 +41,7 @@ class Application(db.Model):
 
     def start(self):
         try:
-            application = d.create_container(application.image, '/bin/bash -c "/start web"', detach=True, ports=[
-                                         str(application.port)], environment=['PORT=' + str(application.port)])
+            application = d.start(self.container)
         except Exception, e:
             raise e
         print(application)
