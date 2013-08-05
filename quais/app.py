@@ -30,4 +30,3 @@ def cut_filter(s, at):
         return s[:at]
     except:
         return s
-        

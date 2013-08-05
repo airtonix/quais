@@ -1,6 +1,9 @@
-from flask import abort, Blueprint, json, jsonify, request
+from flask import abort, Blueprint, json, jsonify, request, Response
+from jinja2.filters import do_filesizeformat
 from .extensions import d
 from .models import Application
+import datetime
+import json
 
 api = Blueprint('api', __name__, url_prefix='/api')
 
@@ -9,6 +12,23 @@ api = Blueprint('api', __name__, url_prefix='/api')
 def api_applications():
     # containers = {x['Id'][:12]: x for x in d.containers()}
     return json.dumps([x.serialize for x in Application.query.all()])
+
+
+@api.route('/images')
+def api_images():
+    data_images = []
+    for image in d.images():
+        if 'Repository' in image:
+            data_images.append({
+                'repository': image['Repository'],
+                'created': datetime.datetime.fromtimestamp(image['Created']).isoformat(),
+                'created_timestamp': image['Created'],
+                'tag': image['Tag'],
+                'virtual_size': do_filesizeformat(image['VirtualSize']),
+                'image_id': image['Id'],
+                'size': do_filesizeformat(image['Size'])
+            })
+    return Response(json.dumps(data_images), 200, mimetype='application/json')
 
 
 @api.route('/register', methods=['POST'])

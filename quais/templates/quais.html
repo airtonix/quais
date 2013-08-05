@@ -1,25 +1,19 @@
 {% extends "_base.html" %}
 
 {% block content %}
-    <a href="#" class="btn btn-turquoise">Foo</a>
-    <a href="#" class="btn btn-green-sea">Foo</a>
-    <a href="#" class="btn btn-emerald">Foo</a>
-    <a href="#" class="btn btn-nephritis">Foo</a>
-    <a href="#" class="btn btn-peter-river">Foo</a>
-    <a href="#" class="btn btn-belize-hole">Foo</a>
-    <a href="#" class="btn btn-amethyst">Foo</a>
-    <a href="#" class="btn btn-wisteria">Foo</a>
-    <a href="#" class="btn btn-wet-asphalt">Foo</a>
-    <a href="#" class="btn btn-midnight-blue">Foo</a>
-    <a href="#" class="btn btn-sun-flower">Foo</a>
-    <a href="#" class="btn btn-orange">Foo</a>
-    <a href="#" class="btn btn-carrot">Foo</a>
-    <a href="#" class="btn btn-pumpkin">Foo</a>
-    <a href="#" class="btn btn-alizarin">Foo</a>
-    <a href="#" class="btn btn-pomegranate">Foo</a>
-    <a href="#" class="btn btn-concrete">Foo</a>
-    <a href="#" class="btn btn-asbestos">Foo</a>
     <div class="js-application">
+        <div class="btn-group pull-right" data-toggle="buttons">
+            <label class="btn btn-nephritis btn-small">
+                <input type="radio" name="options" id="option1"> Running
+            </label>
+            <label class="btn btn-alizarin btn-small">
+                <input type="radio" name="options" id="option2"> Stopped
+            </label>
+            <label class="btn btn-primary btn-small active">
+                <input type="radio" name="options" id="option3" checked> All
+            </label>
+        </div>
+        <h3>Application Containers</h3>
         <table class="table table-middle" id="application-list">
             <thead>
                 <tr>
@@ -30,6 +24,19 @@
                     <th>Container</th>
                     <th>Status</th>
                     <th class="table-application-actions">Actions</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+        <h3>Images</h3>
+        <table class="table table-middle" id="image-list">
+            <thead>
+                <tr>
+                    <th>Repository</th>
+                    <th>Tag</th>
+                    <th>ID</th>
+                    <th>Created</th>
+                    <th>Size</th>
                 </tr>
             </thead>
             <tbody></tbody>

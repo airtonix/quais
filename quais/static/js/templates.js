@@ -100,4 +100,35 @@ function program9(depth0,data) {
   buffer += "\n    </div>\n</td>";
   return buffer;
   });
+templates['image.hbs'] = template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  var buffer = "", stack1, stack2, options, functionType="function", escapeExpression=this.escapeExpression, helperMissing=helpers.helperMissing;
+
+
+  buffer += "<td>";
+  if (stack1 = helpers.repository) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.repository; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "</td>\n<td>";
+  if (stack1 = helpers.tag) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.tag; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "</td>\n<td>";
+  options = {hash:{},data:data};
+  buffer += escapeExpression(((stack1 = helpers.truncate || depth0.truncate),stack1 ? stack1.call(depth0, depth0.image_id, 12, options) : helperMissing.call(depth0, "truncate", depth0.image_id, 12, options)))
+    + "</td>\n<td>";
+  options = {hash:{},data:data};
+  buffer += escapeExpression(((stack1 = helpers.timeago || depth0.timeago),stack1 ? stack1.call(depth0, depth0.created, options) : helperMissing.call(depth0, "timeago", depth0.created, options)))
+    + "</td>\n<td>";
+  if (stack2 = helpers.size) { stack2 = stack2.call(depth0, {hash:{},data:data}); }
+  else { stack2 = depth0.size; stack2 = typeof stack2 === functionType ? stack2.apply(depth0) : stack2; }
+  buffer += escapeExpression(stack2)
+    + " (virtual ";
+  if (stack2 = helpers.virtual_size) { stack2 = stack2.call(depth0, {hash:{},data:data}); }
+  else { stack2 = depth0.virtual_size; stack2 = typeof stack2 === functionType ? stack2.apply(depth0) : stack2; }
+  buffer += escapeExpression(stack2)
+    + ")</td>";
+  return buffer;
+  });
 })();
