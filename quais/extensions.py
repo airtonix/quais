@@ -4,9 +4,9 @@ from flask.ext.sqlalchemy import SQLAlchemy
 
 db = SQLAlchemy()
 
-d = 'foo'
-
 try:
+    if os.getenv('CI_SERVER', 'no') == 'yes':
+        docker_host = 'http://127.0.0.1:4243/'
     docker_host = os.getenv('DOCKER_HOST', None)
     if docker_host is None:
         raise EnvironmentError(
