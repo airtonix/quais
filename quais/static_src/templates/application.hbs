@@ -4,23 +4,26 @@
 <td>{{image}}</td>
 <td>{{container}}</td>
 <td>
-    {{#is status 'started'}}
+    {{#is status_type 'up'}}
         <span class="label label-success">{{status}}</span>
     {{/is}}
-    {{#is status 'stopped'}}
+    {{#is status_type 'exit'}}
         <span class="label label-danger">{{status}}</span>
     {{/is}}
-    {{#is status 'error'}}
+    {{#is status_type 'unknown'}}
         <span class="label label-warning">{{error}}</span>
     {{/is}}
 </td>
 <td>
     <div class="btn-group btn-group-justified">
-        {{#is status 'started'}}
+        {{#is status_type 'up'}}
             <a href="#" class="btn btn-small btn btn-belize-hole js-app-restart">Restart</a>
             <a href="#" class="btn btn-small btn-alizarin js-app-stop">Stop</a>
         {{/is}}
-        {{#is status 'stopped'}}
+        {{#is status_type 'exit'}}
+            <a href="#" class="btn btn-small btn btn-nephritis js-app-start">Start</a>
+        {{/is}}
+        {{#is status_type 'unknown'}}
             <a href="#" class="btn btn-small btn btn-nephritis js-app-start">Start</a>
         {{/is}}
     </div>

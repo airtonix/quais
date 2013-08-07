@@ -79,26 +79,38 @@ function program9(depth0,data) {
   buffer += escapeExpression(stack2)
     + "</td>\n<td>\n    ";
   options = {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data};
-  stack2 = ((stack1 = helpers.is || depth0.is),stack1 ? stack1.call(depth0, depth0.status, "started", options) : helperMissing.call(depth0, "is", depth0.status, "started", options));
+  stack2 = ((stack1 = helpers.is || depth0.is),stack1 ? stack1.call(depth0, depth0.status_type, "up", options) : helperMissing.call(depth0, "is", depth0.status_type, "up", options));
   if(stack2 || stack2 === 0) { buffer += stack2; }
   buffer += "\n    ";
   options = {hash:{},inverse:self.noop,fn:self.program(3, program3, data),data:data};
-  stack2 = ((stack1 = helpers.is || depth0.is),stack1 ? stack1.call(depth0, depth0.status, "stopped", options) : helperMissing.call(depth0, "is", depth0.status, "stopped", options));
+  stack2 = ((stack1 = helpers.is || depth0.is),stack1 ? stack1.call(depth0, depth0.status_type, "exit", options) : helperMissing.call(depth0, "is", depth0.status_type, "exit", options));
   if(stack2 || stack2 === 0) { buffer += stack2; }
   buffer += "\n    ";
   options = {hash:{},inverse:self.noop,fn:self.program(5, program5, data),data:data};
-  stack2 = ((stack1 = helpers.is || depth0.is),stack1 ? stack1.call(depth0, depth0.status, "error", options) : helperMissing.call(depth0, "is", depth0.status, "error", options));
+  stack2 = ((stack1 = helpers.is || depth0.is),stack1 ? stack1.call(depth0, depth0.status_type, "unknown", options) : helperMissing.call(depth0, "is", depth0.status_type, "unknown", options));
   if(stack2 || stack2 === 0) { buffer += stack2; }
   buffer += "\n</td>\n<td>\n    <div class=\"btn-group btn-group-justified\">\n        ";
   options = {hash:{},inverse:self.noop,fn:self.program(7, program7, data),data:data};
-  stack2 = ((stack1 = helpers.is || depth0.is),stack1 ? stack1.call(depth0, depth0.status, "started", options) : helperMissing.call(depth0, "is", depth0.status, "started", options));
+  stack2 = ((stack1 = helpers.is || depth0.is),stack1 ? stack1.call(depth0, depth0.status_type, "up", options) : helperMissing.call(depth0, "is", depth0.status_type, "up", options));
   if(stack2 || stack2 === 0) { buffer += stack2; }
   buffer += "\n        ";
   options = {hash:{},inverse:self.noop,fn:self.program(9, program9, data),data:data};
-  stack2 = ((stack1 = helpers.is || depth0.is),stack1 ? stack1.call(depth0, depth0.status, "stopped", options) : helperMissing.call(depth0, "is", depth0.status, "stopped", options));
+  stack2 = ((stack1 = helpers.is || depth0.is),stack1 ? stack1.call(depth0, depth0.status_type, "exit", options) : helperMissing.call(depth0, "is", depth0.status_type, "exit", options));
+  if(stack2 || stack2 === 0) { buffer += stack2; }
+  buffer += "\n        ";
+  options = {hash:{},inverse:self.noop,fn:self.program(9, program9, data),data:data};
+  stack2 = ((stack1 = helpers.is || depth0.is),stack1 ? stack1.call(depth0, depth0.status_type, "unknown", options) : helperMissing.call(depth0, "is", depth0.status_type, "unknown", options));
   if(stack2 || stack2 === 0) { buffer += stack2; }
   buffer += "\n    </div>\n</td>";
   return buffer;
+  });
+templates['filters.hbs'] = template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  
+
+
+  return "<div class=\"btn-group pull-right\" data-toggle=\"buttons\">\n    <label class=\"btn btn-nephritis btn-small js-filter-started\">\n        <input type=\"radio\"> Running\n    </label>\n    <label class=\"btn btn-alizarin btn-small js-filter-stopped\">\n        <input type=\"radio\"> Stopped\n    </label>\n    <label class=\"btn btn-primary btn-small js-filter-all\">\n        <input type=\"radio\"> All\n    </label>\n</div>";
   });
 templates['image.hbs'] = template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];

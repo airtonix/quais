@@ -30,7 +30,8 @@ class Application(db.Model):
             'vhost': self.vhost,
             'image': self.image,
             'port': self.port,
-            'status': 'started'
+            'status': self.status if hasattr(self, 'status') else 'Unknown',
+            'status_type': self.status_type if hasattr(self, 'status_type') else 'unknown'
         }
 
     def update(self, data):

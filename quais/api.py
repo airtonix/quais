@@ -10,8 +10,22 @@ api = Blueprint('api', __name__, url_prefix='/api')
 
 @api.route('/applications')
 def api_applications():
-    # containers = {x['Id'][:12]: x for x in d.containers()}
-    return json.dumps([x.serialize for x in Application.query.all()])
+    containers = {x['Id'][:12]: x for x in d.containers(all=True)}
+    print(containers)
+    applications = []
+    for application in Application.query.all():
+        if application.container in containers:
+            status = containers[application.container]['Status']
+            if 'Exit' in status:
+                application.status_type = 'exit'
+            elif 'Up' in status:
+                application.status_type = 'up'
+            else:
+                application.status_type = 'unknown'
+            application.status = containers[application.container]['Status']
+            applications.append(application.serialize)
+
+    return json.dumps(applications)
 
 
 @api.route('/images')
@@ -47,12 +61,9 @@ def register_application():
 @api.route('/start/<int:app_id>', methods=['POST'])
 def start_application(app_id):
     application = Application.query.get(app_id)
-    if application is None:
-        return jsonify, 404
-    try:
-        application = d.start(application.container)
-    except Exception, e:
-        return jsonify(error=e), 500
+    print(application.container)
+    ret = d.start(application.container)
+    print(dir(ret))
     return jsonify(), 200
 
 

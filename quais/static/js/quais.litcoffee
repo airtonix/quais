@@ -9,6 +9,7 @@ Let's start by creating our Application model and collection
             req = $.post('/api/start/' + @get('id'))
                 .done =>
                     @set('status', 'started')
+                    @set('status_type', 'up')
                     $('#messages').notify
                         type: 'success'
                         message:
@@ -54,6 +55,13 @@ Let's start by creating our Application model and collection
     ApplicationList = Backbone.Collection.extend
         model: Application
         url: '/api/applications'
+
+        started: ->
+            return @filter (app) ->
+                app.get('status_type') == 'up'
+        stopped: ->
+            return @filter (app) ->
+                app.get('status_type') == 'exit'
 
 And the same for Image:
 
@@ -104,6 +112,26 @@ And also the Image View
             @$el.html(@template(@model.toJSON()))
             return @
 
+Create the Filter View
+    
+    FilterView = Backbone.View.extend
+        tagName: 'div'
+        template: Handlebars.templates['filters.hbs']
+        events:
+            'click .js-filter-all': 'showAll'
+            'click .js-filter-stopped': 'showStopped'
+            'click .js-filter-started': 'showStarted'
+        render: ->
+            @$el.html(@template())
+            return @
+        showAll: ->
+            App.addAllApplications()
+        showStopped: ->
+            App.addStoppedApplications()
+        showStarted: ->
+            App.addStartedApplications()
+
+
 And to finish it all, the main application view that binds to the content area
 
     AppView = Backbone.View.extend
@@ -111,17 +139,24 @@ And to finish it all, the main application view that binds to the content area
         initialize: ->
             @listenTo(Applications, 'add', @addOneApplication);
             @listenTo(Applications, 'reset', @addAllApplications);
-            @listenTo(Applications, 'all', @render);
             @listenTo(Images, 'add', @addOneImage);
             @listenTo(Images, 'reset sort', @addAllImages);
-            @listenTo(Images, 'all', @render);
+            @filters = new FilterView()
+            $('.js-filters').append(@filters.render().el)
             Applications.fetch()
             Images.fetch()
         addOneApplication: (app) ->
             view = new ApplicationView({model: app})
             $('#application-list tbody').append(view.render().el)
         addAllApplications: () ->
+            $('#application-list tbody').empty()
             Applications.each(@addOneApplication, @)
+        addStoppedApplications: () ->
+            $('#application-list tbody').empty()
+            _.each(Applications.stopped(), @addOneApplication)
+        addStartedApplications: () ->
+            $('#application-list tbody').empty()
+            _.each(Applications.started(), @addOneApplication)
         addOneImage: (image) ->
             view = new ImageView({model: image})
             $('#image-list tbody').append(view.render().el)
@@ -133,5 +168,4 @@ Away we go...
     
     $(document).ready ->
         window.App = new AppView
-
 
